@@ -92,6 +92,6 @@ private:
 	// ƒ‚ƒfƒ‹
 	ModelPtr                                        m_pSpaceDome;
 	ModelPtr                                        m_pMainUnit;
-	ModelPtr                                        m_pGunWeapon;
+	ModelPtr                                        m_pGunWeapon[2];
 	ModelPtr                                        m_pSwordWeapon;
 };

@@ -13,13 +13,16 @@
 #include "GameContext.h"
 #include "GameObjectManager.h"
 
-GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model)
+#include "MainUnit.h"
+
+GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPos, std::unique_ptr<DirectX::Model>&& model)
 {
 	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
 	ID3D11DeviceContext* deviceContext = deviceResources->GetD3DDeviceContext();
 
 	m_pGunWeapon = std::move(model);
 	m_position = position;
+	m_initialPos = initialPos;
 }
 
 
@@ -38,6 +41,10 @@ void GunWeapon::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const Dire
 
 	ID3D11DeviceContext1* context = GameContext::Get<DX::DeviceResources>()->GetD3DDeviceContext();
 	DirectX::CommonStates* state = GameContext::Get<DirectX::CommonStates>();
+
+	world *= DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(180.0f));
+	world *= DirectX::SimpleMath::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(180.0f));
+	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_initialPos, 1.0f, 0.0f);
 
 	m_pGunWeapon->Draw(context, *state, world, viewMatrix, projectionMatrix);
 }

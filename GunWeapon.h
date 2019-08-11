@@ -20,9 +20,11 @@ private:
 	// ƒ‚ƒfƒ‹
 	std::unique_ptr<DirectX::Model>                 m_pGunWeapon;
 
+	float                                           m_initialPos;
+
 
 public:
-	GunWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model);
+	GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPos, std::unique_ptr<DirectX::Model>&& model);
 	~GunWeapon();
 
 public:

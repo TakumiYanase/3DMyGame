@@ -74,14 +74,9 @@ void Game::Initialize(HWND window, int width, int height)
 	std::unique_ptr<SpaceDome> spaceDome = std::make_unique<SpaceDome>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pSpaceDome));
 	m_pGameObjectManager->Add(std::move(spaceDome));
 
-	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pMainUnit));
+	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero,
+		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon));
 	m_pGameObjectManager->Add(std::move(mainUnit));
-
-	//std::unique_ptr<GunWeapon> gunWeapom = std::make_unique<GunWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pGunWeapon));
-	//m_pGameObjectManager->Add(std::move(gunWeapom));
-
-	std::unique_ptr<SwordWeapon> swordWeapon = std::make_unique<SwordWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pSwordWeapon));
-	m_pGameObjectManager->Add(std::move(swordWeapon));
 
 	// ’Ç]ƒJƒƒ‰
 	//m_pFollowCamera->setEyePosition(eye);
@@ -248,21 +243,24 @@ void Game::CreateDeviceDependentResources()
 		*factory
 	);
 
-	// ‰“‹——£‘•”õ
-	m_pGunWeapon = DirectX::Model::CreateFromCMO(
-		m_deviceResources->GetD3DDevice(),
-		L"Resources/Models/GunWeapon.cmo",
-		*factory
-	);
-
 	// ‹ßÚ‘•”õ
 	m_pSwordWeapon = DirectX::Model::CreateFromCMO(
 		m_deviceResources->GetD3DDevice(),
 		L"Resources/Models/SwordWeapon.cmo",
 		*factory
 	);
-	delete factory;
 
+	// ‰“‹——£‘•”õ
+	for (int i = 0; i < 2; i++)
+	{
+		m_pGunWeapon[i] = DirectX::Model::CreateFromCMO(
+			m_deviceResources->GetD3DDevice(),
+			L"Resources/Models/GunWeapon.cmo",
+			*factory
+		);
+	}
+
+	delete factory;
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.

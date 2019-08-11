@@ -23,16 +23,24 @@ public:
 private:
 	// コモンステート
 	std::unique_ptr<DirectX::CommonStates>	        m_pState;
+
 	// モデル
 	ModelPtr                                        m_pMainUnit;
-	ModelPtr                                        m_pGunWeapon;
+	ModelPtr                                        m_pGunRightWeapon;
+	ModelPtr                                        m_pGunLeftWeapon;
+	ModelPtr                                        m_pSwordRightWeapon;
+	ModelPtr                                        m_pSwordLeftWeapon;
 
 	DirectX::SimpleMath::Vector3                    m_velocity;
 	float m_horizontalAngle;
 
 
 public:
-	MainUnit(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model);
+	MainUnit(const DirectX::SimpleMath::Vector3& position, 
+		std::unique_ptr<DirectX::Model>&& mainUnitModel, 
+		std::unique_ptr<DirectX::Model>&& gunRightModel,
+		std::unique_ptr<DirectX::Model>&& gunLeftModel,
+		std::unique_ptr<DirectX::Model>&& swordModel);
 	~MainUnit();
 
 public:

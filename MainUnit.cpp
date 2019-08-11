@@ -21,20 +21,30 @@
 const float MainUnit::MOVE_SPEED = 0.1f;
 const float MainUnit::ANGULAR_SPEED = 2.0f;
 
-MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model)
+MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position,
+	std::unique_ptr<DirectX::Model>&& mainUnitModel,
+	std::unique_ptr<DirectX::Model>&& gunRightModel,
+	std::unique_ptr<DirectX::Model>&& gunLeftModel,
+	std::unique_ptr<DirectX::Model>&& swordModel)
 	:GameObject()
 	, m_horizontalAngle(-90.0f)
 	, m_velocity(0.0f, 0.0f, 0.0f)
 {
 	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
 	ID3D11DeviceContext* deviceContext = deviceResources->GetD3DDeviceContext();
-	GameObjectManager*   gameObjectManager = GameContext::Get<GameObjectManager>();
 
-	m_pMainUnit = std::move(model);
+	m_pMainUnit = std::move(mainUnitModel);
+	m_pGunRightWeapon = std::move(gunRightModel);
+	m_pGunLeftWeapon = std::move(gunLeftModel);
 	m_position = position;
 
-	//std::unique_ptr<GunWeapon> gunWeapom = std::make_unique<GunWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pGunWeapon));
-	//gameObjectManager->Add(std::move(gunWeapom));
+	std::unique_ptr<GunWeapon> gunRightWeapom = std::make_unique<GunWeapon>
+		(DirectX::SimpleMath::Vector3::Zero, 1.0f, std::move(m_pGunRightWeapon));
+	GameContext::Get<GameObjectManager>()->Add(std::move(gunRightWeapom));
+
+	std::unique_ptr<GunWeapon> gunLeftWeapom = std::make_unique<GunWeapon>
+		(DirectX::SimpleMath::Vector3::Zero, -1.0f, std::move(m_pGunLeftWeapon));
+	GameContext::Get<GameObjectManager>()->Add(std::move(gunLeftWeapom));
 }
 
 
@@ -75,10 +85,10 @@ void MainUnit::Update(float elapsedTime)
 
 void MainUnit::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix)
 {
-	DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::Identity;
-
-	ID3D11DeviceContext1* context = GameContext::Get<DX::DeviceResources>()->GetD3DDeviceContext();
+	ID3D11DeviceContext1*  context = GameContext::Get<DX::DeviceResources>()->GetD3DDeviceContext();
 	DirectX::CommonStates* state = GameContext::Get<DirectX::CommonStates>();
+
+	DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::Identity;
 
 	world *= DirectX::SimpleMath::Matrix::CreateRotationX(DirectX::XMConvertToRadians(-90.0f));
 	world *= DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(90.0f));
