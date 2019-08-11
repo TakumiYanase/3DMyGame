@@ -11,6 +11,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{f75d31f7-0d85-4950-a4e4-43183ac677f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{4492b4ce-f564-42c5-ac8c-afae52ab0254}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -21,7 +24,6 @@
     <ClInclude Include="DeviceResources.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="FollowCamera.h" />
     <ClInclude Include="GameContext.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -46,6 +48,12 @@
     <ClInclude Include="MainUnit.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="FollowCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -54,7 +62,6 @@
     <ClCompile Include="DeviceResources.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="FollowCamera.cpp" />
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -72,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="MainUnit.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugCamera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

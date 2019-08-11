@@ -52,7 +52,10 @@ void Game::Initialize(HWND window, int width, int height)
 	// コモンステート作成
 	m_pState = std::make_unique<DirectX::CommonStates>(m_deviceResources->GetD3DDevice());
 
-	// 追従カメラ
+	// デバッグカメラ作成
+	m_pDebugCamera = std::make_unique<DebugCamera>();
+
+	// 追従カメラ作成
 	m_pFollowCamera = std::make_unique<FollowCamera>();
 
 	// マウスの作成
@@ -74,14 +77,15 @@ void Game::Initialize(HWND window, int width, int height)
 	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pMainUnit));
 	m_pGameObjectManager->Add(std::move(mainUnit));
 
-	std::unique_ptr<GunWeapon> gunWeapom = std::make_unique<GunWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pGunWeapon));
-	m_pGameObjectManager->Add(std::move(gunWeapom));
+	//std::unique_ptr<GunWeapon> gunWeapom = std::make_unique<GunWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pGunWeapon));
+	//m_pGameObjectManager->Add(std::move(gunWeapom));
 
 	std::unique_ptr<SwordWeapon> swordWeapon = std::make_unique<SwordWeapon>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pSwordWeapon));
 	m_pGameObjectManager->Add(std::move(swordWeapon));
 
-	m_pFollowCamera->setEyePosition(eye);
-	m_pFollowCamera->setTargetPosition(target);
+	// 追従カメラ
+	//m_pFollowCamera->setEyePosition(eye);
+	//m_pFollowCamera->setTargetPosition(target);
 }
 
 #pragma region Frame Update
@@ -107,9 +111,13 @@ void Game::Update(DX::StepTimer const& timer)
 
 	m_pGameObjectManager->Update(elapsedTime);
 
-	//m_pFollowCamera->setRefTargetPosition(m_playerPos);
-	//m_pFollowCamera->setRefEyePosition(m_playerPos + FollowCamera::TARGET_TO_EYE_VEC);
-	m_pFollowCamera->update();
+	// デバッグカメラ
+	m_pDebugCamera->update();
+
+	// 追従カメラ
+	//m_pFollowCamera->setRefTargetPosition(MainUnit::GetPosition());
+	//m_pFollowCamera->setRefEyePosition(MainUnit::GetPosition() + FollowCamera::TARGET_TO_EYE_VEC);
+	//m_pFollowCamera->update();
 }
 #pragma endregion
 
@@ -132,7 +140,7 @@ void Game::Render()
     context;
 
 	// 描画
-	m_pGameObjectManager->Render(m_pFollowCamera->getViewMatrix(), m_projectionMatrix);
+	m_pGameObjectManager->Render(m_pDebugCamera->getViewMatrix(), m_projectionMatrix);
 
     m_deviceResources->PIXEndEvent();
 

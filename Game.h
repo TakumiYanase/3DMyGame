@@ -15,6 +15,7 @@
 #include "Model.h"
 
 #include "FollowCamera.h"
+#include "DebugCamera.h"
 
 #include "GameObjectManager.h"
 
@@ -66,6 +67,9 @@ private:
 
     // Rendering loop timer.
     DX::StepTimer                                   m_timer;
+
+	// デバッグカメラ
+	std::unique_ptr<DebugCamera>                    m_pDebugCamera;
 
 	// 追従カメラ
 	std::unique_ptr<FollowCamera>                   m_pFollowCamera;
