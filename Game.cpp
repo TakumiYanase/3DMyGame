@@ -75,7 +75,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_pGameObjectManager->Add(std::move(spaceDome));
 
 	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero,
-		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon));
+		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon), 0.2f);
 	m_pGameObjectManager->Add(std::move(mainUnit));
 
 	// ’Ç]ƒJƒƒ‰

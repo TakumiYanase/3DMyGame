@@ -7,17 +7,17 @@
 class GameObject
 {
 	private:
-		bool m_isValid;
-
+		bool        m_isValid;
+		std::string m_tag;
 
 	protected:
 		DirectX::SimpleMath::Vector3 m_position;
 		DirectX::SimpleMath::Vector3 m_rotation;
 		DirectX::SimpleMath::Vector3 m_scale;
-
+		DirectX::SimpleMath::Matrix  m_worldMatrix;
 
 	public:
-		GameObject();
+		GameObject(const std::string & tag = "GameObject");
 
 	public:
 		virtual ~GameObject();
@@ -36,6 +36,8 @@ class GameObject
 		const DirectX::SimpleMath::Vector3& GetPosition() const;
 		const DirectX::SimpleMath::Vector3& GetRotation() const;
 		const DirectX::SimpleMath::Vector3& GetScale() const;
+		const DirectX::SimpleMath::Matrix& GetMatrix() const;
+		const std::string & GameObject::GetTag() const;
 
 		void SetPosition(DirectX::SimpleMath::Vector3& position);
 		void SetRotation(DirectX::SimpleMath::Vector3& rotation);
@@ -81,6 +83,17 @@ inline const DirectX::SimpleMath::Vector3 & GameObject::GetScale() const
 	return m_scale;
 }
 
+
+inline const std::string & GameObject::GetTag() const
+{
+	return m_tag;
+}
+
+
+inline const DirectX::SimpleMath::Matrix & GameObject::GetMatrix() const
+{
+	return m_worldMatrix;
+}
 
 
 inline void GameObject::SetPosition(DirectX::SimpleMath::Vector3 & position)

@@ -54,6 +54,9 @@
     <ClInclude Include="DebugCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
+    <ClInclude Include="ArtilleryShell.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="DebugCamera.cpp">
       <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="ArtilleryShell.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

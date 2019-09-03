@@ -22,7 +22,7 @@ public:
 
 private:
 	// コモンステート
-	std::unique_ptr<DirectX::CommonStates>	        m_pState;
+	std::unique_ptr<DirectX::CommonStates>	           m_pState;
 
 	// モデル
 	ModelPtr                                        m_pMainUnit;
@@ -32,19 +32,26 @@ private:
 	ModelPtr                                        m_pSwordLeftWeapon;
 
 	DirectX::SimpleMath::Vector3                    m_velocity;
-	float m_horizontalAngle;
-
+	float											m_horizontalAngle;
+	float                                           m_fireInterval;
+	float                                           m_elapsedTime;
+	bool                                            m_isLoading;
 
 public:
-	MainUnit(const DirectX::SimpleMath::Vector3& position, 
-		std::unique_ptr<DirectX::Model>&& mainUnitModel, 
-		std::unique_ptr<DirectX::Model>&& gunRightModel,
-		std::unique_ptr<DirectX::Model>&& gunLeftModel,
-		std::unique_ptr<DirectX::Model>&& swordModel);
+	MainUnit(const DirectX::SimpleMath::Vector3& position
+		, std::unique_ptr<DirectX::Model>&& mainUnitModel
+		, std::unique_ptr<DirectX::Model>&& gunRightModel
+		, std::unique_ptr<DirectX::Model>&& gunLeftModel
+		, std::unique_ptr<DirectX::Model>&& swordModel
+		, float fireInterval);
 	~MainUnit();
 
 public:
 	void Update(float elapsedTime) override;
 	void Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix) override;
+
+private:
+	void Fire();
 };
+
 

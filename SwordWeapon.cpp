@@ -14,6 +14,7 @@
 #include "GameObjectManager.h"
 
 SwordWeapon::SwordWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model)
+	:GameObject("SwordWeapon")
 {
 	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
 	ID3D11DeviceContext* deviceContext = deviceResources->GetD3DDeviceContext();

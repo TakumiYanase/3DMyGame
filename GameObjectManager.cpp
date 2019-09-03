@@ -133,3 +133,26 @@ void GameObjectManager::DestroyObjects()
 	// ŽÀ‘•3 ƒ‰ƒ€ƒ_Ž®
 	//m_objects.remove_if([](const GameObjectPtr& object) { return object->IsInvalid(); });
 }
+
+std::vector<GameObject*> GameObjectManager::Find(const std::string & tag) const
+{
+	std::vector<GameObject*> result;
+
+	for (const GameObjectPtr& object : m_objects)
+	{
+		if (object->GetTag() == tag)
+		{
+			result.push_back(object.get());
+		}
+	}
+
+	for (const GameObjectPtr& object : m_objectQueue)
+	{
+		if (object->GetTag() == tag)
+		{
+			result.push_back(object.get());
+		}
+	}
+
+	return result;
+}

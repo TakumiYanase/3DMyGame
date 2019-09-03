@@ -3,6 +3,7 @@
 #include <list>
 #include <memory>
 #include <SimpleMath.h>
+#include <vector>
 
 
 
@@ -30,6 +31,7 @@ class GameObjectManager final
 		void Update(float elapsedTime);
 		void Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix);
 		void Add(GameObjectPtr&& object);
+		std::vector<GameObject*> Find(const std::string& tag)const;
 
 	private:
 		void UpdateObjects(float elapsedTime);
