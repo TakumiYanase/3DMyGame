@@ -1,25 +1,27 @@
+//======================================================
+// File Name	: ArtilleryShell.cpp
+// Summary		: ñCíe
+// Date			: 2019.07.24
+// Author		: Takumi Yanase
+//======================================================
 #include "pch.h"
-
 #include "ArtilleryShell.h"
-
 #include "DeviceResources.h"
 #include "GameContext.h"
-
-
-
+//======================================================
+// íËêî
 const float ArtilleryShell::MOVE_SPEED    = 0.5f;
 const float ArtilleryShell::MAXIMUM_RANGE = 20.0f;
-
-
-
-ArtilleryShell::ArtilleryShell(const DirectX::SimpleMath::Vector3& position, const DirectX::SimpleMath::Vector3& azimuth)
+//======================================================
+ArtilleryShell::ArtilleryShell(const DirectX::SimpleMath::Vector3& position, 
+	const DirectX::SimpleMath::Vector3& azimuth)
 	: GameObject()
 	, m_velocity(azimuth * MOVE_SPEED)
 	, m_origin(position)
 {
 	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
 	ID3D11DeviceContext* deviceContext   = deviceResources->GetD3DDeviceContext();
-	m_geometricPrimitive = DirectX::GeometricPrimitive::CreateSphere(deviceContext, 0.3f);
+	m_pGeometricPrimitive = DirectX::GeometricPrimitive::CreateSphere(deviceContext, 0.3f);
 
 	m_position = position;
 }
@@ -45,10 +47,11 @@ void ArtilleryShell::Update(float elapsedTime)
 
 
 
-void ArtilleryShell::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix)
+void ArtilleryShell::Render(const DirectX::SimpleMath::Matrix& viewMatrix, 
+	const DirectX::SimpleMath::Matrix& projectionMatrix)
 {
 	DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::Identity;
 	world *= DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
-	m_geometricPrimitive->Draw(world, viewMatrix, projectionMatrix, DirectX::Colors::Red);
+	m_pGeometricPrimitive->Draw(world, viewMatrix, projectionMatrix, DirectX::Colors::Red);
 }

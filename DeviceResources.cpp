@@ -1,16 +1,15 @@
-﻿//
-// DeviceResources.cpp - A wrapper for the Direct3D 11 device and swapchain
+﻿//======================================================
+// File Name	: DeviceResources.cpp
+//  - A wrapper for the Direct3D 11 device and swapchain
 //                       (requires DirectX 11.1 Runtime)
-//
-
+//======================================================
 #include "pch.h"
 #include "DeviceResources.h"
-
+//======================================================
 using namespace DirectX;
 using namespace DX;
-
 using Microsoft::WRL::ComPtr;
-
+//======================================================
 namespace
 {
 #if defined(_DEBUG)

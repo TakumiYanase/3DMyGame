@@ -1,40 +1,49 @@
-//
-// Game.cpp
-//
-
+//======================================================
+// File Name	: Game.cpp
+// Summary		: ゲーム
+// Date			: 2019.06.01
+// Author		: Takumi Yanase
+//======================================================
 #include "pch.h"
 #include "Game.h"
-
 #include <random>
 #include "GameObjectManager.h"
 #include "SpaceDome.h"
 #include "MainUnit.h"
 #include "GunWeapon.h"
 #include "SwordWeapon.h"
-
+#include "Enemy.h"
 #include "GameContext.h"
-
+#include "DebugFont.h"
+//======================================================
 extern void ExitGame();
 
 using Microsoft::WRL::ComPtr;
 
 LPCWSTR Game::WINDOW_NAME = L"就職作品";
-
+//======================================================
 Game::Game() noexcept(false)
 {
-    m_deviceResources = std::make_unique<DX::DeviceResources>();
-    m_deviceResources->RegisterDeviceNotify(this);
+	m_pDeviceResources = std::make_unique<DX::DeviceResources>();
+	m_pDeviceResources->RegisterDeviceNotify(this);
+	GameContext::Register<DX::DeviceResources>(m_pDeviceResources);
+}
+
+Game::~Game()
+{
+	DebugFont* debugFont = DebugFont::GetInstance();
+	debugFont->reset();
 }
 
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
-    m_deviceResources->SetWindow(window, width, height);
+	m_pDeviceResources->SetWindow(window, width, height);
 
-    m_deviceResources->CreateDeviceResources();
+	m_pDeviceResources->CreateDeviceResources();
     CreateDeviceDependentResources();
 
-    m_deviceResources->CreateWindowSizeDependentResources();
+	m_pDeviceResources->CreateWindowSizeDependentResources();
     CreateWindowSizeDependentResources();
 
 	//追従カメラ設定
@@ -50,7 +59,7 @@ void Game::Initialize(HWND window, int width, int height)
     */
 
 	// コモンステート作成
-	m_pState = std::make_unique<DirectX::CommonStates>(m_deviceResources->GetD3DDevice());
+	m_pState = std::make_unique<DirectX::CommonStates>(m_pDeviceResources->GetD3DDevice());
 
 	// デバッグカメラ作成
 	m_pDebugCamera = std::make_unique<DebugCamera>();
@@ -63,20 +72,31 @@ void Game::Initialize(HWND window, int width, int height)
 	m_pMouse->SetWindow(window);
 	// キーボードの作成
 	m_pKeyboard = std::make_unique<DirectX::Keyboard>();
+	m_pKeyBoardTracker = std::make_unique<DirectX::Keyboard::KeyboardStateTracker>();
 
 	// オブジェクトマネージャーの作成
 	m_pGameObjectManager = std::make_unique<GameObjectManager>();
 
-	GameContext::Register<DX::DeviceResources>(m_deviceResources);
 	GameContext::Register<GameObjectManager>(m_pGameObjectManager);
 	GameContext::Register<DirectX::CommonStates>(m_pState);
+	//GameContext::Register<DebugFont>(m_pDebugFont);
+	//GameContext::Register<DirectX::Keyboard::KeyboardStateTracker>(m_pKeyBoardTracker);
+
+	DebugFont* debugFont = DebugFont::GetInstance();
+	debugFont->create(m_pDeviceResources->GetD3DDevice(), m_pDeviceResources->GetD3DDeviceContext());
 
 	std::unique_ptr<SpaceDome> spaceDome = std::make_unique<SpaceDome>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pSpaceDome));
 	m_pGameObjectManager->Add(std::move(spaceDome));
 
 	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero,
-		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon), 0.2f);
+		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon), 0.2f, m_pDebugCamera.get());
 	m_pGameObjectManager->Add(std::move(mainUnit));
+
+	for (int i = 0; i < 20; i++)
+	{
+		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(m_pDeviceResources->GetD3DDeviceContext(), 20.0f);
+		m_pGameObjectManager->Add(std::move(enemy));
+	}
 
 	// 追従カメラ
 	//m_pFollowCamera->setEyePosition(eye);
@@ -107,7 +127,7 @@ void Game::Update(DX::StepTimer const& timer)
 	m_pGameObjectManager->Update(elapsedTime);
 
 	// デバッグカメラ
-	m_pDebugCamera->update();
+	m_pDebugCamera->Update();
 
 	// 追従カメラ
 	//m_pFollowCamera->setRefTargetPosition(MainUnit::GetPosition());
@@ -128,40 +148,40 @@ void Game::Render()
 
     Clear();
 
-    m_deviceResources->PIXBeginEvent(L"Render");
-    auto context = m_deviceResources->GetD3DDeviceContext();
+	m_pDeviceResources->PIXBeginEvent(L"Render");
+    auto context = m_pDeviceResources->GetD3DDeviceContext();
 
     // TODO: Add your rendering code here.
     context;
 
 	// 描画
-	m_pGameObjectManager->Render(m_pDebugCamera->getViewMatrix(), m_projectionMatrix);
+	m_pGameObjectManager->Render(m_pDebugCamera->GetViewMatrix(), m_projectionMatrix);
 
-    m_deviceResources->PIXEndEvent();
+	m_pDeviceResources->PIXEndEvent();
 
     // Show the new frame.
-    m_deviceResources->Present();
+	m_pDeviceResources->Present();
 }
 
 // Helper method to clear the back buffers.
 void Game::Clear()
 {
-    m_deviceResources->PIXBeginEvent(L"Clear");
+	m_pDeviceResources->PIXBeginEvent(L"Clear");
 
     // Clear the views.
-    auto context = m_deviceResources->GetD3DDeviceContext();
-    auto renderTarget = m_deviceResources->GetRenderTargetView();
-    auto depthStencil = m_deviceResources->GetDepthStencilView();
+    auto context = m_pDeviceResources->GetD3DDeviceContext();
+    auto renderTarget = m_pDeviceResources->GetRenderTargetView();
+    auto depthStencil = m_pDeviceResources->GetDepthStencilView();
 
     context->ClearRenderTargetView(renderTarget, DirectX::Colors::CornflowerBlue);
     context->ClearDepthStencilView(depthStencil, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     context->OMSetRenderTargets(1, &renderTarget, depthStencil);
 
     // Set the viewport.
-    auto viewport = m_deviceResources->GetScreenViewport();
+    auto viewport = m_pDeviceResources->GetScreenViewport();
     context->RSSetViewports(1, &viewport);
 
-    m_deviceResources->PIXEndEvent();
+	m_pDeviceResources->PIXEndEvent();
 }
 #pragma endregion
 
@@ -191,13 +211,13 @@ void Game::OnResuming()
 
 void Game::OnWindowMoved()
 {
-    auto r = m_deviceResources->GetOutputSize();
-    m_deviceResources->WindowSizeChanged(r.right, r.bottom);
+    auto r = m_pDeviceResources->GetOutputSize();
+	m_pDeviceResources->WindowSizeChanged(r.right, r.bottom);
 }
 
 void Game::OnWindowSizeChanged(int width, int height)
 {
-    if (!m_deviceResources->WindowSizeChanged(width, height))
+    if (!m_pDeviceResources->WindowSizeChanged(width, height))
         return;
 
     CreateWindowSizeDependentResources();
@@ -218,34 +238,34 @@ void Game::GetDefaultSize(int& width, int& height) const
 // These are the resources that depend on the device.
 void Game::CreateDeviceDependentResources()
 {
-    auto device = m_deviceResources->GetD3DDevice();
+    auto device = m_pDeviceResources->GetD3DDevice();
 
     // TODO: Initialize device dependent objects here (independent of window size).
     device;
 
 	// エフェクトファクトリの作成
-	DirectX::EffectFactory* factory = new DirectX::EffectFactory(m_deviceResources->GetD3DDevice());
+	DirectX::EffectFactory* factory = new DirectX::EffectFactory(m_pDeviceResources->GetD3DDevice());
 	// テクスチャの読み込みパス指定
 	factory->SetDirectory(L"Resources/Models");
 
 	// ファイルを指定してモデルデータ読み込み
 	// 天球
 	m_pSpaceDome = DirectX::Model::CreateFromCMO(
-		m_deviceResources->GetD3DDevice(),
+		m_pDeviceResources->GetD3DDevice(),
 		L"Resources/Models/SpaceDome.cmo",
 		*factory
 	);
 
 	// 本体
 	m_pMainUnit = DirectX::Model::CreateFromCMO(
-		m_deviceResources->GetD3DDevice(),
+		m_pDeviceResources->GetD3DDevice(),
 		L"Resources/Models/MainUnit.cmo",
 		*factory
 	);
 
 	// 近接装備
 	m_pSwordWeapon = DirectX::Model::CreateFromCMO(
-		m_deviceResources->GetD3DDevice(),
+		m_pDeviceResources->GetD3DDevice(),
 		L"Resources/Models/SwordWeapon.cmo",
 		*factory
 	);
@@ -254,7 +274,7 @@ void Game::CreateDeviceDependentResources()
 	for (int i = 0; i < 2; i++)
 	{
 		m_pGunWeapon[i] = DirectX::Model::CreateFromCMO(
-			m_deviceResources->GetD3DDevice(),
+			m_pDeviceResources->GetD3DDevice(),
 			L"Resources/Models/GunWeapon.cmo",
 			*factory
 		);
@@ -269,7 +289,7 @@ void Game::CreateWindowSizeDependentResources()
     // TODO: Initialize windows-size dependent objects here.
 
 	// ウインドウサイズからアスペクト比を算出する
-	RECT size = m_deviceResources->GetOutputSize();
+	RECT size = m_pDeviceResources->GetOutputSize();
 	float aspectRatio = float(size.right) / float(size.bottom);
 
 	// 画角を設定

@@ -1,9 +1,11 @@
-﻿//
-// DeviceResources.h - A wrapper for the Direct3D 11 device and swapchain
-//
-
-#pragma once
-
+﻿//======================================================
+// File Name	: DeviceResources.h
+//  - A wrapper for the Direct3D 11 device and swapchain
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_DEVICE_RESOURCES
+#define INCLUDE_DEVICE_RESOURCES
+//======================================================
 namespace DX
 {
     // Provides an interface for an application that owns DeviceResources to be notified of the device being lost or created.
@@ -110,3 +112,5 @@ namespace DX
         IDeviceNotify*                                  m_deviceNotify;
     };
 }
+
+#endif // INCLUDE_DEVICE_RESOURCES

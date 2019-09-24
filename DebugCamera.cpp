@@ -2,27 +2,28 @@
 // File Name	: DebugCamera.cpp
 // Summary		: デバッグカメラ
 // Date			: 2019/4/25
-// Author		: Takafumi Ban
+// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "DebugCamera.h"
-
+//======================================================
 // 定数
 const float DebugCamera::DEFAULT_CAMERA_DISTANCE = 5.0f;
-
-// コンストラクタ
+//======================================================
 DebugCamera::DebugCamera()
 	: m_yAngle(0.0f), m_xAngle(0.0f), m_prevX(0), m_prevY(0), m_scrollWheelValue(0)
 {
 }
 
-// デストラクタ
+
+
 DebugCamera::~DebugCamera()
 {
 }
 
-// 更新
-void DebugCamera::update()
+
+
+void DebugCamera::Update()
 {
 	auto state = DirectX::Mouse::Get().GetState();
 
@@ -42,7 +43,7 @@ void DebugCamera::update()
 	// マウスのボタンが押されていたらカメラを移動させる
 	if (state.leftButton)
 	{
-		motion(state.x, state.y);
+		Motion(state.x, state.y);
 	}
 	// マウスの座標を前回のとして保存
 	m_prevX = state.x;
@@ -76,8 +77,9 @@ void DebugCamera::update()
 	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(eye, target, up);
 }
 
-// 行列の生成
-void DebugCamera::motion(int x, int y)
+
+
+void DebugCamera::Motion(int x, int y)
 {
 	// マウスポインタの前回からの変位
 	float dx = static_cast<float>(x - m_prevX);

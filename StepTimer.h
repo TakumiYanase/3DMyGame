@@ -1,13 +1,15 @@
-//
-// StepTimer.h - A simple timer that provides elapsed time information
-//
-
-#pragma once
-
+//======================================================
+// File Name	: StepTimer.h
+//  - A simple timer that provides elapsed time information
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_STEP_TIMER
+#define INCLUDE_STEP_TIMER
+//======================================================
 #include <cmath>
 #include <exception>
 #include <stdint.h>
-
+//======================================================
 namespace DX
 {
     // Helper class for animation and simulation timing.
@@ -187,3 +189,5 @@ namespace DX
         uint64_t m_targetElapsedTicks;
     };
 }
+
+#endif // INCLUDE_STEP_TIMER

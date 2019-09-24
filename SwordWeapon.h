@@ -1,33 +1,44 @@
 //======================================================
 // File Name	: SwordWeapon.h
-// Summary		: 近接装備
+// Summary		: 近接武器
 // Date			: 2019.08.08
 // Author		: Takumi Yanase
 //======================================================
-#pragma once
-
+// インクルードガード
+#ifndef INCLUDE_SWORD_WEAPON
+#define INCLUDE_SWORD_WEAPON
+//======================================================
 #include <CommonStates.h>
 #include <SimpleMath.h>
 #include "Model.h"
-
 #include "GameObject.h"
-
+//======================================================
+// 近接武器クラス
 class SwordWeapon :public GameObject
 {
-private:
+public: // 基本
+	// コンストラクタ
+	SwordWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model);
+	// デストラクタ
+	~SwordWeapon();
+
+
+
+public: // 基本処理
+	// 更新
+	void Update(float elapsedTime) override;
+	// 描画
+	void Render(const DirectX::SimpleMath::Matrix& viewMatrix, 
+		const DirectX::SimpleMath::Matrix& projectionMatrix) override;
+
+
+
+private: // メンバ変数
 	// コモンステート
 	std::unique_ptr<DirectX::CommonStates>	        m_pState;
 	// モデル
 	std::unique_ptr<DirectX::Model>                 m_pSwordWeapon;
-
-
-public:
-	SwordWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model);
-	~SwordWeapon();
-
-public:
-	void Update(float elapsedTime) override;
-	void Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix) override;
-
 };
+
+#endif // INCLUDE_SWORD_WEAPON
 

@@ -1,9 +1,12 @@
+//======================================================
+// File Name	: GameObject.cpp
+// Summary		: ゲームオブジェクト
+// Date			: 2019.07.24
+// Author		: Takumi Yanase
+//======================================================
 #include "pch.h"
-
 #include "GameObject.h"
-
-
-
+//======================================================
 GameObject::GameObject(const std::string & tag)
 	: m_isValid(true)
 	, m_position(0.0f, 0.0f, 0.0f)
@@ -17,7 +20,6 @@ GameObject::GameObject(const std::string & tag)
 GameObject::~GameObject()
 {
 }
-
 
 
 

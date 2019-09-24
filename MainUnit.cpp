@@ -5,29 +5,27 @@
 // Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
-
 #include "MainUnit.h"
-
 #include <memory>
 #include "DeviceResources.h"
 #include "GameContext.h"
 #include "GameObjectManager.h"
-
 #include "GunWeapon.h"
 #include "SwordWeapon.h"
 #include "ArtilleryShell.h"
-
 #include "Keyboard.h"
-
+#include "DebugFont.h"
+//======================================================
+// íËêî
 const float MainUnit::MOVE_SPEED = 0.1f;
 const float MainUnit::ANGULAR_SPEED = 2.0f;
-
+//======================================================
 MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position
 	, std::unique_ptr<DirectX::Model>&& mainUnitModel
 	, std::unique_ptr<DirectX::Model>&& gunRightModel
 	, std::unique_ptr<DirectX::Model>&& gunLeftModel
 	, std::unique_ptr<DirectX::Model>&& swordModel
-	, float fireInterval)
+	, float fireInterval, DebugCamera* debugCamera)
 	:GameObject("MainUnit")
 	, m_horizontalAngle(-90.0f)
 	, m_velocity(0.0f, 0.0f, 0.0f)
@@ -44,18 +42,21 @@ MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position
 	m_position = position;
 
 	std::unique_ptr<GunWeapon> gunRightWeapom = std::make_unique<GunWeapon>
-		(DirectX::SimpleMath::Vector3::Zero, 1.0f, std::move(m_pGunRightWeapon),this);
+		(DirectX::SimpleMath::Vector3::Zero, 1.0f, std::move(m_pGunRightWeapon), this, debugCamera);
 	GameContext::Get<GameObjectManager>()->Add(std::move(gunRightWeapom));
 
 	std::unique_ptr<GunWeapon> gunLeftWeapom = std::make_unique<GunWeapon>
-		(DirectX::SimpleMath::Vector3::Zero, -1.0f, std::move(m_pGunLeftWeapon),this);
+		(DirectX::SimpleMath::Vector3::Zero, -1.0f, std::move(m_pGunLeftWeapon), this, debugCamera);
 	GameContext::Get<GameObjectManager>()->Add(std::move(gunLeftWeapom));
 }
+
 
 
 MainUnit::~MainUnit()
 {
 }
+
+
 
 void MainUnit::Update(float elapsedTime)
 {
@@ -107,20 +108,45 @@ void MainUnit::Update(float elapsedTime)
 	if (!m_isLoading)
 	{
 		DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
-		if (keyState.IsKeyDown(DirectX::Keyboard::Space))
+		if (keyState.IsKeyDown(DirectX::Keyboard::Z))
 		{
 			Fire();
 		}
 	}
 }
 
-void MainUnit::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const DirectX::SimpleMath::Matrix& projectionMatrix)
+
+
+void MainUnit::Render(const DirectX::SimpleMath::Matrix& viewMatrix, 
+	const DirectX::SimpleMath::Matrix& projectionMatrix)
 {
 	ID3D11DeviceContext1*  context = GameContext::Get<DX::DeviceResources>()->GetD3DDeviceContext();
 	DirectX::CommonStates* state = GameContext::Get<DirectX::CommonStates>();
-
+	
 	m_pMainUnit->Draw(context, *state, m_worldMatrix, viewMatrix, projectionMatrix);
+
+	DebugFont* debugFont = DebugFont::GetInstance();
+	debugFont->print(10, 5, L"             [ Prototype ]");
+	debugFont->draw();
+	debugFont->print(10, 25, L"--------------------------------");
+	debugFont->draw();
+	debugFont->print(10, 40, L"  [ W ] : Move on");
+	debugFont->draw();
+	debugFont->print(10, 60, L"  [ S ] : Recession");
+	debugFont->draw();
+	debugFont->print(10, 80, L"  [ A ] : Left turning");
+	debugFont->draw();
+	debugFont->print(10, 100, L"  [ D ] : Right turning");
+	debugFont->draw();
+	debugFont->print(10, 115, L"--------------------------------");
+	debugFont->draw();
+	debugFont->print(10, 130, L"  [ Z ] : Fire");
+	debugFont->draw();
+	debugFont->print(10, 150, L"  [ Space ] : Slow down time");
+	debugFont->draw();
 }
+
+
 
 void MainUnit::Fire()
 {

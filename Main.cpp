@@ -1,19 +1,17 @@
-//
-// Main.cpp
-//
-
+//======================================================
+// File Name	: Main.cpp
+// Summary		: メイン
+//======================================================
 #include "pch.h"
 #include "Game.h"
-
 #include "Mouse.h"
 #include "Keyboard.h"
-
 // デバッグコンソール
 #include <io.h>
 #include <Fcntl.h>
-
+//======================================================
 using namespace DirectX;
-
+//======================================================
 // デバッグコンソール
 static void CreateConsoleWindow() {
 #ifdef _DEBUG
@@ -49,7 +47,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-	CreateConsoleWindow();
+	//CreateConsoleWindow();
 
     if (!XMVerifyCPUSupport())
         return 1;
@@ -275,8 +273,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 SetWindowLongPtr(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
                 SetWindowLongPtr(hWnd, GWL_EXSTYLE, 0);
 
-                int width = 800;
-                int height = 600;
+                int width = 1800;
+                int height = 900;
                 if (game)
                     game->GetDefaultSize(width, height);
 

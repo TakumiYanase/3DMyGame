@@ -1,11 +1,16 @@
-#pragma once
-
-
-
+//======================================================
+// File Name	: GameContext.h
+// Summary		: ゲームコンテキスト
+// Date			: 2019.07.24
+// Author		: Takumi Yanase
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_GAME_CONTEXT
+#define INCLUDE_GAME_CONTEXT
+//======================================================
 #include "ServiceLocator.h"
-
-
-
+//======================================================
+// ゲームコンテキストクラス
 class GameContext final
 {
 	public:
@@ -43,3 +48,5 @@ class GameContext final
 			ServiceLocator<Context>::Reset();
 		}
 };
+
+#endif // INCLUDE_GAME_CONTEXT

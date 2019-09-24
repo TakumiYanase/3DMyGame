@@ -1,12 +1,17 @@
-#pragma once
-
-
-
+//======================================================
+// File Name	: ServiceLocator.h
+// Summary		: サービスロケーター
+// Date			: 2019.07.24
+// Author		: Takumi Yanase
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_SERVICE_LOCATOR
+#define INCLUDE_SERVICE_LOCATOR
+//======================================================
 #include <cassert>
 #include <memory>
-
-
-
+//======================================================
+// サービスロケーター
 template<typename Service>
 class ServiceLocator final
 {
@@ -146,3 +151,5 @@ class ServiceLocator<Service>::ServiceValHolder final : public IServiceHolder
 
 template<typename Service>
 std::unique_ptr<typename ServiceLocator<Service>::IServiceHolder> ServiceLocator<Service>::s_serviceHolder;
+
+#endif // INCLUDE_SERVICE_LOCATOR

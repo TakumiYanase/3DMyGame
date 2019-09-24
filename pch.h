@@ -1,10 +1,12 @@
-//
-// pch.h
+//======================================================
+// File Name	: pch.h
+// Summary		: プリコンパイル済みヘッダー
 // Header for standard system include files.
-//
-
-#pragma once
-
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_PCH
+#define INCLUDE_PCH
+//======================================================
 #include <WinSDKVer.h>
 #define _WIN32_WINNT 0x0601
 #include <SDKDDKVer.h>
@@ -52,7 +54,7 @@
 #ifdef _DEBUG
 #include <dxgidebug.h>
 #endif
-
+//======================================================
 namespace DX
 {
     // Helper class for COM exceptions
@@ -81,3 +83,5 @@ namespace DX
         }
     }
 }
+
+#endif // INCLUDE_PCH

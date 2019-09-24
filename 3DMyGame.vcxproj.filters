@@ -57,6 +57,15 @@
     <ClInclude Include="ArtilleryShell.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugFont.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -91,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="ArtilleryShell.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugFont.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -164,7 +164,9 @@
   <ItemGroup>
     <ClInclude Include="ArtilleryShell.h" />
     <ClInclude Include="DebugCamera.h" />
+    <ClInclude Include="DebugFont.h" />
     <ClInclude Include="DeviceResources.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="FollowCamera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameContext.h" />
@@ -177,11 +179,14 @@
     <ClInclude Include="SpaceDome.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="SwordWeapon.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArtilleryShell.cpp" />
     <ClCompile Include="DebugCamera.cpp" />
+    <ClCompile Include="DebugFont.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FollowCamera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
