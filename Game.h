@@ -18,7 +18,6 @@
 #include "Keyboard.h"
 #include "Model.h"
 #include "FollowCamera.h"
-#include "DebugCamera.h"
 #include "GameObjectManager.h"
 //======================================================
 // A basic game implementation that creates a D3D11 device and
@@ -69,8 +68,6 @@ private:
     std::unique_ptr<DX::DeviceResources>                      m_pDeviceResources;
     // Rendering loop timer.						          
     DX::StepTimer                                             m_timer;
-	// デバッグカメラ
-	std::unique_ptr<DebugCamera>                              m_pDebugCamera;
 	// 追従カメラ								              
 	std::unique_ptr<FollowCamera>                             m_pFollowCamera;
 	// 射影行列										          

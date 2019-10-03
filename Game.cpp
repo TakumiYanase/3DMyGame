@@ -15,12 +15,14 @@
 #include "Enemy.h"
 #include "GameContext.h"
 #include "DebugFont.h"
+#include "iostream"
+#include "string"
 //======================================================
 extern void ExitGame();
 
 using Microsoft::WRL::ComPtr;
 
-LPCWSTR Game::WINDOW_NAME = L"就職作品";
+LPCWSTR Game::WINDOW_NAME = L"My Game";
 //======================================================
 Game::Game() noexcept(false)
 {
@@ -38,6 +40,8 @@ Game::~Game()
 // Initialize the Direct3D resources required to run.
 void Game::Initialize(HWND window, int width, int height)
 {
+	std::cout << "My Game Debug" << std::endl;
+
 	m_pDeviceResources->SetWindow(window, width, height);
 
 	m_pDeviceResources->CreateDeviceResources();
@@ -45,11 +49,6 @@ void Game::Initialize(HWND window, int width, int height)
 
 	m_pDeviceResources->CreateWindowSizeDependentResources();
     CreateWindowSizeDependentResources();
-
-	//追従カメラ設定
-	DirectX::SimpleMath::Vector3 eye(0.0f, 1.0f, 10.0f);
-	DirectX::SimpleMath::Vector3 target(0.0f, 0.0f, 0.0f);
-	DirectX::SimpleMath::Vector3 up(0.0f, 1.0f, 0.0f);
 
     // TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -61,10 +60,7 @@ void Game::Initialize(HWND window, int width, int height)
 	// コモンステート作成
 	m_pState = std::make_unique<DirectX::CommonStates>(m_pDeviceResources->GetD3DDevice());
 
-	// デバッグカメラ作成
-	m_pDebugCamera = std::make_unique<DebugCamera>();
-
-	// 追従カメラ作成
+	// 追従カメラ
 	m_pFollowCamera = std::make_unique<FollowCamera>();
 
 	// マウスの作成
@@ -77,30 +73,39 @@ void Game::Initialize(HWND window, int width, int height)
 	// オブジェクトマネージャーの作成
 	m_pGameObjectManager = std::make_unique<GameObjectManager>();
 
+	DirectX::SimpleMath::Vector3 eye(0.0f, 1.0f, 10.0f);
+	DirectX::SimpleMath::Vector3 target(0.0f, 0.0f, 0.0f);
+	DirectX::SimpleMath::Vector3 up(0.0f, 1.0f, 0.0f);
+
+	m_pFollowCamera->SetEyePosition(eye);
+	m_pFollowCamera->SetTargetPosition(target);
+
+	// ゲームコンテキストに登録
 	GameContext::Register<GameObjectManager>(m_pGameObjectManager);
 	GameContext::Register<DirectX::CommonStates>(m_pState);
+	GameContext::Register<FollowCamera>(m_pFollowCamera);
 	//GameContext::Register<DebugFont>(m_pDebugFont);
 	//GameContext::Register<DirectX::Keyboard::KeyboardStateTracker>(m_pKeyBoardTracker);
 
+	// デバッグフォント
 	DebugFont* debugFont = DebugFont::GetInstance();
 	debugFont->create(m_pDeviceResources->GetD3DDevice(), m_pDeviceResources->GetD3DDeviceContext());
 
+	// 天球生成
 	std::unique_ptr<SpaceDome> spaceDome = std::make_unique<SpaceDome>(DirectX::SimpleMath::Vector3::Zero, std::move(m_pSpaceDome));
 	m_pGameObjectManager->Add(std::move(spaceDome));
 
+	// 本体生成
 	std::unique_ptr<MainUnit> mainUnit = std::make_unique<MainUnit>(DirectX::SimpleMath::Vector3::Zero,
-		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon), 0.2f, m_pDebugCamera.get());
+		std::move(m_pMainUnit), std::move(m_pGunWeapon[0]), std::move(m_pGunWeapon[1]), std::move(m_pSwordWeapon));
 	m_pGameObjectManager->Add(std::move(mainUnit));
 
+	// テスト用の敵生成
 	for (int i = 0; i < 20; i++)
 	{
 		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(m_pDeviceResources->GetD3DDeviceContext(), 20.0f);
 		m_pGameObjectManager->Add(std::move(enemy));
 	}
-
-	// 追従カメラ
-	//m_pFollowCamera->setEyePosition(eye);
-	//m_pFollowCamera->setTargetPosition(target);
 }
 
 #pragma region Frame Update
@@ -125,14 +130,6 @@ void Game::Update(DX::StepTimer const& timer)
     elapsedTime;
 
 	m_pGameObjectManager->Update(elapsedTime);
-
-	// デバッグカメラ
-	m_pDebugCamera->Update();
-
-	// 追従カメラ
-	//m_pFollowCamera->setRefTargetPosition(MainUnit::GetPosition());
-	//m_pFollowCamera->setRefEyePosition(MainUnit::GetPosition() + FollowCamera::TARGET_TO_EYE_VEC);
-	//m_pFollowCamera->update();
 }
 #pragma endregion
 
@@ -155,7 +152,7 @@ void Game::Render()
     context;
 
 	// 描画
-	m_pGameObjectManager->Render(m_pDebugCamera->GetViewMatrix(), m_projectionMatrix);
+	m_pGameObjectManager->Render(m_pFollowCamera->GetViewMatrix(), m_projectionMatrix);
 
 	m_pDeviceResources->PIXEndEvent();
 

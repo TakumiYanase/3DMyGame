@@ -10,19 +10,23 @@
 #include "DeviceResources.h"
 #include "GameContext.h"
 #include "GameObjectManager.h"
+#include "ArtilleryShell.h"
+#include "FollowCamera.h"
+//======================================================
+// íËêî
+const DirectX::SimpleMath::Vector3 GunWeapon::GUN_SIZE = DirectX::SimpleMath::Vector3(0.4f, 0.4f, 0.4f);
 //======================================================
 GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPosX,
-	std::unique_ptr<DirectX::Model>&& model, GameObject* mainUnit, DebugCamera* debugCamera)
+	std::unique_ptr<DirectX::Model>&& model, MainUnit* mainUnit, float fireInterval)
 	:GameObject("GunWeapon")
 	, m_pMainUnit(mainUnit)
-	, m_pDebugCamera(debugCamera)
+	, m_initialPosX(initialPosX)
+	, m_fireInterval(fireInterval)
+	, m_isLoading(false)
+	, m_elapsedTime(0.0f)
 {
-	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
-	ID3D11DeviceContext* deviceContext = deviceResources->GetD3DDeviceContext();
-
 	m_pGunWeapon = std::move(model);
 	m_position = position;
-	m_initialPosX = initialPosX;
 }
 
 
@@ -35,11 +39,33 @@ GunWeapon::~GunWeapon()
 
 void GunWeapon::Update(float elapsedTime)
 {
+	FollowCamera* followCamera = GameContext::Get<FollowCamera>();
+	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
+
 	m_worldMatrix = DirectX::SimpleMath::Matrix::Identity;
+	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateScale(GUN_SIZE);
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(180.0f));
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_initialPosX, 1.0f, 0.0f);
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationY(m_pDebugCamera->GetAngleY());
+	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_initialPosX, 0.8f, 0.0f);
+	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationY(followCamera->GetAngleY());
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_pMainUnit->GetPosition());
+
+	if (m_isLoading)
+	{
+		m_elapsedTime += elapsedTime;
+
+		if (m_elapsedTime > m_fireInterval)
+		{
+			m_isLoading = false;
+		}
+	}
+
+	if (!m_isLoading)
+	{
+		if (keyState.IsKeyDown(DirectX::Keyboard::Z))
+		{
+			FireCommand();
+		}
+	}
 }
 
 
@@ -48,8 +74,22 @@ void GunWeapon::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const Dire
 {
 	ID3D11DeviceContext1* context = GameContext::Get<DX::DeviceResources>()->GetD3DDeviceContext();
 	DirectX::CommonStates* state = GameContext::Get<DirectX::CommonStates>();
-
 	m_pGunWeapon->Draw(context, *state, m_worldMatrix, viewMatrix, projectionMatrix);
 }
+
+
+
+void GunWeapon::FireCommand()
+{
+	float rad = DirectX::XMConvertToRadians(m_pMainUnit->GetHorizontalAngle());
+	DirectX::SimpleMath::Vector3 direction(cos(rad), 0.0f, sin(rad));
+
+	std::unique_ptr<ArtilleryShell> shell = std::make_unique<ArtilleryShell>(m_position, direction, this);
+	GameContext::Get<GameObjectManager>()->Add(std::move(shell));
+
+	m_elapsedTime = 0.0f;
+	m_isLoading = true;
+}
+
 
 

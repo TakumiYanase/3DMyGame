@@ -12,9 +12,10 @@
 #include "GameObjectManager.h"
 #include "GunWeapon.h"
 #include "SwordWeapon.h"
-#include "ArtilleryShell.h"
 #include "Keyboard.h"
-#include "DebugFont.h"
+#include "FollowCamera.h"
+#include "iostream"
+#include "string"
 //======================================================
 // íËêî
 const float MainUnit::MOVE_SPEED = 0.1f;
@@ -24,29 +25,22 @@ MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position
 	, std::unique_ptr<DirectX::Model>&& mainUnitModel
 	, std::unique_ptr<DirectX::Model>&& gunRightModel
 	, std::unique_ptr<DirectX::Model>&& gunLeftModel
-	, std::unique_ptr<DirectX::Model>&& swordModel
-	, float fireInterval, DebugCamera* debugCamera)
+	, std::unique_ptr<DirectX::Model>&& swordModel)
 	:GameObject("MainUnit")
 	, m_horizontalAngle(-90.0f)
 	, m_velocity(0.0f, 0.0f, 0.0f)
-	, m_fireInterval(fireInterval)
-	, m_elapsedTime(0.0f)
-	, m_isLoading(false)
 {
-	DX::DeviceResources* deviceResources = GameContext::Get<DX::DeviceResources>();
-	ID3D11DeviceContext* deviceContext = deviceResources->GetD3DDeviceContext();
-
 	m_pMainUnit = std::move(mainUnitModel);
 	m_pGunRightWeapon = std::move(gunRightModel);
 	m_pGunLeftWeapon = std::move(gunLeftModel);
 	m_position = position;
 
 	std::unique_ptr<GunWeapon> gunRightWeapom = std::make_unique<GunWeapon>
-		(DirectX::SimpleMath::Vector3::Zero, 1.0f, std::move(m_pGunRightWeapon), this, debugCamera);
+		(DirectX::SimpleMath::Vector3::Zero, 1.0f, std::move(m_pGunRightWeapon), this, 0.2f);
 	GameContext::Get<GameObjectManager>()->Add(std::move(gunRightWeapom));
 
 	std::unique_ptr<GunWeapon> gunLeftWeapom = std::make_unique<GunWeapon>
-		(DirectX::SimpleMath::Vector3::Zero, -1.0f, std::move(m_pGunLeftWeapon), this, debugCamera);
+		(DirectX::SimpleMath::Vector3::Zero, -1.0f, std::move(m_pGunLeftWeapon), this, 0.2f);
 	GameContext::Get<GameObjectManager>()->Add(std::move(gunLeftWeapom));
 }
 
@@ -60,6 +54,7 @@ MainUnit::~MainUnit()
 
 void MainUnit::Update(float elapsedTime)
 {
+	FollowCamera* followCamera = GameContext::Get<FollowCamera>();
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
 
 	m_velocity = DirectX::SimpleMath::Vector3::Zero;
@@ -89,30 +84,18 @@ void MainUnit::Update(float elapsedTime)
 	m_position += m_velocity;
 
 	m_worldMatrix = DirectX::SimpleMath::Matrix::Identity;
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationX(DirectX::XMConvertToRadians(-90.0f));
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(90.0f));
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(-90.0f));
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationY(DirectX::XMConvertToRadians(-m_horizontalAngle));
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
-	if (m_isLoading)
-	{
-		m_elapsedTime += elapsedTime;
+	std::cout << "m_horizontalAngle  :  " << m_horizontalAngle << std::endl;
 
-		if (m_elapsedTime > m_fireInterval)
-		{
-			m_isLoading = false;
-		}
-	}
+	m_matrix = DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
-	if (!m_isLoading)
-	{
-		DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
-		if (keyState.IsKeyDown(DirectX::Keyboard::Z))
-		{
-			Fire();
-		}
-	}
+	// í«è]ÉJÉÅÉâ
+	followCamera->SetRefTargetPosition(m_matrix.Translation());
+	followCamera->SetRefEyePosition(m_position + FollowCamera::TARGET_TO_EYE_VEC);
+	followCamera->Update();
 }
 
 
@@ -124,39 +107,4 @@ void MainUnit::Render(const DirectX::SimpleMath::Matrix& viewMatrix,
 	DirectX::CommonStates* state = GameContext::Get<DirectX::CommonStates>();
 	
 	m_pMainUnit->Draw(context, *state, m_worldMatrix, viewMatrix, projectionMatrix);
-
-	DebugFont* debugFont = DebugFont::GetInstance();
-	debugFont->print(10, 5, L"             [ Prototype ]");
-	debugFont->draw();
-	debugFont->print(10, 25, L"--------------------------------");
-	debugFont->draw();
-	debugFont->print(10, 40, L"  [ W ] : Move on");
-	debugFont->draw();
-	debugFont->print(10, 60, L"  [ S ] : Recession");
-	debugFont->draw();
-	debugFont->print(10, 80, L"  [ A ] : Left turning");
-	debugFont->draw();
-	debugFont->print(10, 100, L"  [ D ] : Right turning");
-	debugFont->draw();
-	debugFont->print(10, 115, L"--------------------------------");
-	debugFont->draw();
-	debugFont->print(10, 130, L"  [ Z ] : Fire");
-	debugFont->draw();
-	debugFont->print(10, 150, L"  [ Space ] : Slow down time");
-	debugFont->draw();
 }
-
-
-
-void MainUnit::Fire()
-{
-	float rad = DirectX::XMConvertToRadians(m_horizontalAngle);
-	DirectX::SimpleMath::Vector3 direction(cos(rad), 0.0f, sin(rad));
-
-	std::unique_ptr<ArtilleryShell> shell = std::make_unique<ArtilleryShell>(m_position, direction);
-	GameContext::Get<GameObjectManager>()->Add(std::move(shell));
-
-	m_elapsedTime = 0.0f;
-	m_isLoading = true;
-}
-

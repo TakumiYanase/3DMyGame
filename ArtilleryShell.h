@@ -25,7 +25,8 @@ public: // 定数
 
 public: // 基本
 	// コンストラクタ
-	ArtilleryShell(const DirectX::SimpleMath::Vector3& position, const DirectX::SimpleMath::Vector3& azimuth);
+	ArtilleryShell(const DirectX::SimpleMath::Vector3& position
+		, const DirectX::SimpleMath::Vector3& azimuth, GameObject* gameObject);
 	// デストラクタ
 	~ArtilleryShell();
 
@@ -41,8 +42,10 @@ public: // 基本処理
 
 private: // メンバ変数
 	std::unique_ptr<DirectX::GeometricPrimitive> m_pGeometricPrimitive;
+	GameObject*                                  m_pGunWeapon;
 	DirectX::SimpleMath::Vector3                 m_velocity;
 	DirectX::SimpleMath::Vector3                 m_origin;
+	DirectX::SimpleMath::Matrix                  m_worldMatrix;
 };
 
 #endif // INCLUDE_ARTILLERY_SHELL

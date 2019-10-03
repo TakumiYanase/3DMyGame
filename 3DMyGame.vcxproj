@@ -213,7 +213,9 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="GunWeapon.FBX" />
+    <MeshContentTask Include="GunWeapon.FBX">
+      <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>
+    </MeshContentTask>
     <MeshContentTask Include="MainUnit.FBX" />
     <MeshContentTask Include="SpaceDome.FBX">
       <ContentOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Resources\Models\%(Filename).cmo</ContentOutput>

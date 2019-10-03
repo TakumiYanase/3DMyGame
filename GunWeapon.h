@@ -12,16 +12,21 @@
 #include <SimpleMath.h>
 #include "Model.h"
 #include "Keyboard.h"
-#include "DebugCamera.h"
 #include "GameObject.h"
+#include "MainUnit.h"
 //======================================================
 // 遠距離武器クラス
 class GunWeapon :public GameObject
 {
+public: // 定数
+	static const DirectX::SimpleMath::Vector3 GUN_SIZE;
+
+
+
 public: // 基本
 	// コンストラクタ
 	GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPos,
-		std::unique_ptr<DirectX::Model>&& model, GameObject* mainUnit, DebugCamera* debugCamera);
+		std::unique_ptr<DirectX::Model>&& model, MainUnit* mainUnit, float m_fireInterval);
 	// デストラクタ
 	~GunWeapon();
 
@@ -36,14 +41,21 @@ public: // 基本処理
 
 
 
+private: // 処理
+	void FireCommand();
+
+
+
 private: // メンバ変数
 	// コモンステート
-	std::unique_ptr<DirectX::CommonStates>			m_pState;
+	std::unique_ptr<DirectX::CommonStates>   m_pState;
 	// モデル
-	std::unique_ptr<DirectX::Model>                 m_pGunWeapon;
-	GameObject*                                     m_pMainUnit;
-	DebugCamera*                                    m_pDebugCamera;
-	float                                           m_initialPosX;
+	std::unique_ptr<DirectX::Model>          m_pGunWeapon;
+	MainUnit*                                m_pMainUnit;
+	float                                    m_initialPosX;
+	float                                    m_fireInterval;
+	bool                                     m_isLoading;
+	float                                    m_elapsedTime;
 };
 
 #endif // INCLUDE_GUN_WEAPON

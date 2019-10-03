@@ -12,7 +12,6 @@
 #include <SimpleMath.h>
 #include "Model.h"
 #include "GameObject.h"
-#include "DebugCamera.h"
 //======================================================
 // メインユニットのクラス
 class MainUnit :public GameObject
@@ -34,8 +33,7 @@ public: // 基本
 		, std::unique_ptr<DirectX::Model>&& mainUnitModel
 		, std::unique_ptr<DirectX::Model>&& gunRightModel
 		, std::unique_ptr<DirectX::Model>&& gunLeftModel
-		, std::unique_ptr<DirectX::Model>&& swordModel
-		, float fireInterval, DebugCamera* debugCamera);
+		, std::unique_ptr<DirectX::Model>&& swordModel);
 	// デストラクタ
 	~MainUnit();
 
@@ -47,9 +45,11 @@ public: // 基本処理
 	// 描画
 	void Render(const DirectX::SimpleMath::Matrix& viewMatrix, 
 		const DirectX::SimpleMath::Matrix& projectionMatrix) override;
-private:
-	void Fire();
 
+
+
+public: // アクセッサ
+	float GetHorizontalAngle() { return m_horizontalAngle; }
 
 
 private: // メンバ変数
@@ -62,10 +62,8 @@ private: // メンバ変数
 	ModelPtr                                m_pSwordRightWeapon;
 	ModelPtr                                m_pSwordLeftWeapon;
 	DirectX::SimpleMath::Vector3            m_velocity;
+	DirectX::SimpleMath::Matrix             m_matrix;
 	float									m_horizontalAngle;
-	float                                   m_fireInterval;
-	float                                   m_elapsedTime;
-	bool                                    m_isLoading;
 };
 
 #endif // INCLUDE_MAIN_UNIT
