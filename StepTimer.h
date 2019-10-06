@@ -1,6 +1,6 @@
 //======================================================
-// File Name	: StepTimer.h
-//  - A simple timer that provides elapsed time information
+/// File Name	: StepTimer.h
+///  - A simple timer that provides elapsed time information
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_STEP_TIMER

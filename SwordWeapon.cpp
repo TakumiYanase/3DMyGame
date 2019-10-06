@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: SwordWeapon.cpp
-// Summary		: ‹ßÚ•Ší
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: SwordWeapon.cpp
+/// Summary		: ‹ßÚ•Ší
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "SwordWeapon.h"

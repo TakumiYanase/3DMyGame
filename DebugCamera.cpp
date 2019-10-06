@@ -1,8 +1,8 @@
 ﻿//======================================================
-// File Name	: DebugCamera.cpp
-// Summary		: デバッグカメラ
-// Date			: 2019/4/25
-// Author		: Takumi Yanase
+/// File Name	: DebugCamera.cpp
+/// Summary		: デバッグカメラ
+/// Date		: 2019/4/25
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "DebugCamera.h"

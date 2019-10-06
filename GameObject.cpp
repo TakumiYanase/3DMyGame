@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: GameObject.cpp
-// Summary		: ゲームオブジェクト
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: GameObject.cpp
+/// Summary		: ゲームオブジェクト
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "GameObject.h"

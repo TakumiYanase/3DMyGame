@@ -1,8 +1,8 @@
 ﻿//======================================================
-// File Name	: FollowCamera.cpp
-// Summary		: 追従カメラ
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: FollowCamera.cpp
+/// Summary		: 追従カメラ
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "FollowCamera.h"

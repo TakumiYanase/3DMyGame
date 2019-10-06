@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: SpaceDome.h
-// Summary		: 天球
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: SpaceDome.h
+/// Summary		: 天球
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_SPACE_DOME

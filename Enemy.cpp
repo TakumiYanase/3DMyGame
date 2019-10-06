@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: Enemy.cpp
-// Summary		: テスト用の敵オブジェクト
-// Date			: 2019.09.08
-// Author		: Takumi Yanase
+/// File Name	: Enemy.cpp
+/// Summary		: テスト用の敵オブジェクト
+/// Date		: 2019.09.08
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "Enemy.h"

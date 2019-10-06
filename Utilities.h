@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: Utilities.h
-// Summary		: ユーティリティ
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: Utilities.h
+/// Summary		: ユーティリティ
+/// Date			: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_UTILITIES

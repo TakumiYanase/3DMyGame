@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: GameObjectManager.h
-// Summary		: ゲームオブジェクトマネージャー
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: GameObjectManager.h
+/// Summary		: ゲームオブジェクトマネージャー
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_GAME_OBJECT_MANAGER

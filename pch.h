@@ -1,7 +1,7 @@
 //======================================================
-// File Name	: pch.h
-// Summary		: プリコンパイル済みヘッダー
-// Header for standard system include files.
+/// File Name	: pch.h
+/// Summary		: プリコンパイル済みヘッダー
+/// Header for standard system include files.
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_PCH

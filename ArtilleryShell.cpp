@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: ArtilleryShell.cpp
-// Summary		: –C’e
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: ArtilleryShell.cpp
+/// Summary		: –C’e
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "ArtilleryShell.h"

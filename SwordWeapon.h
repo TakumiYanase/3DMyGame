@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: SwordWeapon.h
-// Summary		: 近接武器
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: SwordWeapon.h
+/// Summary		: 近接武器
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_SWORD_WEAPON

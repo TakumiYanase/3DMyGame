@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: MainUnit.h
-// Summary		: 本体
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: MainUnit.h
+/// Summary		: 本体
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_MAIN_UNIT
@@ -23,7 +23,6 @@ class MainUnit :public GameObject
 
 public: // 定数
 	static const float MOVE_SPEED;
-	static const float ANGULAR_SPEED;
 
 
 
@@ -48,10 +47,6 @@ public: // 基本処理
 
 
 
-public: // アクセッサ
-	float GetHorizontalAngle() { return m_horizontalAngle; }
-
-
 private: // メンバ変数
 	// コモンステート
 	std::unique_ptr<DirectX::CommonStates>	m_pState;
@@ -62,8 +57,6 @@ private: // メンバ変数
 	ModelPtr                                m_pSwordRightWeapon;
 	ModelPtr                                m_pSwordLeftWeapon;
 	DirectX::SimpleMath::Vector3            m_velocity;
-	DirectX::SimpleMath::Matrix             m_matrix;
-	float									m_horizontalAngle;
 };
 
 #endif // INCLUDE_MAIN_UNIT

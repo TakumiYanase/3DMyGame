@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: ArtilleryShell.h
-// Summary		: ñCíe
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: ArtilleryShell.h
+/// Summary		: ñCíe
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // ÉCÉìÉNÉãÅ[ÉhÉKÅ[Éh
 #ifndef INCLUDE_ARTILLERY_SHELL

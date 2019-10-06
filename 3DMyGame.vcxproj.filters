@@ -8,11 +8,11 @@
       <UniqueIdentifier>aa73da2b-2989-4cf0-93ed-7eafd995c55d</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{f75d31f7-0d85-4950-a4e4-43183ac677f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Camera">
       <UniqueIdentifier>{4492b4ce-f564-42c5-ac8c-afae52ab0254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{f75d31f7-0d85-4950-a4e4-43183ac677f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,22 +31,22 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="SpaceDome.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="SwordWeapon.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GunWeapon.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="MainUnit.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="FollowCamera.h">
       <Filter>Camera</Filter>
@@ -55,13 +55,13 @@
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="ArtilleryShell.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="DebugFont.h">
       <Filter>Common</Filter>
@@ -75,22 +75,22 @@
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="SpaceDome.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="SwordWeapon.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GunWeapon.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="MainUnit.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="FollowCamera.cpp">
       <Filter>Camera</Filter>
@@ -99,10 +99,10 @@
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="ArtilleryShell.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="DebugFont.cpp">
       <Filter>Common</Filter>
@@ -125,10 +125,10 @@
     <MeshContentTask Include="SpaceDome.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="MainUnit.FBX">
+    <MeshContentTask Include="SwordWeapon.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="SwordWeapon.FBX">
+    <MeshContentTask Include="MainUnit.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
     <MeshContentTask Include="GunWeapon.FBX">

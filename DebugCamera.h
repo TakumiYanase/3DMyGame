@@ -1,8 +1,8 @@
 ﻿//======================================================
-// File Name	: DebugCamera.h
-// Summary		: デバッグカメラ
-// Date			: 2019/4/25
-// Author		: Takumi Yanase
+/// File Name	: DebugCamera.h
+/// Summary		: デバッグカメラ
+/// Date		: 2019/4/25
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_DEBUG_CAMERA

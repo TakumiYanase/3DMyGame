@@ -1,6 +1,6 @@
 ﻿//======================================================
-// File Name	: DeviceResources.h
-//  - A wrapper for the Direct3D 11 device and swapchain
+/// File Name	: DeviceResources.h
+///  - A wrapper for the Direct3D 11 device and swapchain
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_DEVICE_RESOURCES

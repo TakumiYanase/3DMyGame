@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: Game.h
-// Summary		: ゲーム
-// Date			: 2019.06.01
-// Author		: Takumi Yanase
+/// File Name	: Game.h
+/// Summary		: ゲーム
+/// Date		: 2019.06.01
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_GAME

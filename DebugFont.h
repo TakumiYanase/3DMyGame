@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: DebugFont.h
-// Summary		: デバッグフォント
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: DebugFont.h
+/// Summary		: デバッグフォント
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_DEBUG_FONT

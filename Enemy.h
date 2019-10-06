@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: Enemy.h
-// Summary		: テスト用の敵オブジェクト
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: Enemy.h
+/// Summary		: テスト用の敵オブジェクト
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_ENEMY

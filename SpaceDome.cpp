@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: SpaceDome.cpp
-// Summary		: “V‹…
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: SpaceDome.cpp
+/// Summary		: “V‹…
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "SpaceDome.h"

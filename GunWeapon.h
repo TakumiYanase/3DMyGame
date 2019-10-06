@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: GunWeapon.h
-// Summary		: 遠距離武器
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: GunWeapon.h
+/// Summary		: 遠距離武器
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_GUN_WEAPON
@@ -18,8 +18,6 @@
 // 遠距離武器クラス
 class GunWeapon :public GameObject
 {
-public: // 定数
-	static const DirectX::SimpleMath::Vector3 GUN_SIZE;
 
 
 

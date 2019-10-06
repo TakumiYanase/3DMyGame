@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: GameContext.h
-// Summary		: ゲームコンテキスト
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: GameContext.h
+/// Summary		: ゲームコンテキスト
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_GAME_CONTEXT

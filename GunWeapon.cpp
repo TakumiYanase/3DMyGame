@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: GunWeapon.cpp
-// Summary		: âìãóó£ëïîı
-// Date			: 2019.08.08
-// Author		: Takumi Yanase
+/// File Name	: GunWeapon.cpp
+/// Summary		: âìãóó£ëïîı
+/// Date		: 2019.08.08
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "GunWeapon.h"
@@ -12,9 +12,6 @@
 #include "GameObjectManager.h"
 #include "ArtilleryShell.h"
 #include "FollowCamera.h"
-//======================================================
-// íËêî
-const DirectX::SimpleMath::Vector3 GunWeapon::GUN_SIZE = DirectX::SimpleMath::Vector3(0.4f, 0.4f, 0.4f);
 //======================================================
 GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPosX,
 	std::unique_ptr<DirectX::Model>&& model, MainUnit* mainUnit, float fireInterval)
@@ -43,8 +40,6 @@ void GunWeapon::Update(float elapsedTime)
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
 
 	m_worldMatrix = DirectX::SimpleMath::Matrix::Identity;
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateScale(GUN_SIZE);
-	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(180.0f));
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_initialPosX, 0.8f, 0.0f);
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateRotationY(followCamera->GetAngleY());
 	m_worldMatrix *= DirectX::SimpleMath::Matrix::CreateTranslation(m_pMainUnit->GetPosition());
@@ -81,14 +76,14 @@ void GunWeapon::Render(const DirectX::SimpleMath::Matrix& viewMatrix, const Dire
 
 void GunWeapon::FireCommand()
 {
-	float rad = DirectX::XMConvertToRadians(m_pMainUnit->GetHorizontalAngle());
-	DirectX::SimpleMath::Vector3 direction(cos(rad), 0.0f, sin(rad));
+	//float rad = DirectX::XMConvertToRadians(m_pMainUnit->GetHorizontalAngle());
+	//DirectX::SimpleMath::Vector3 direction(cos(rad), 0.0f, sin(rad));
 
-	std::unique_ptr<ArtilleryShell> shell = std::make_unique<ArtilleryShell>(m_position, direction, this);
-	GameContext::Get<GameObjectManager>()->Add(std::move(shell));
+	//std::unique_ptr<ArtilleryShell> shell = std::make_unique<ArtilleryShell>(m_position, direction, this);
+	//GameContext::Get<GameObjectManager>()->Add(std::move(shell));
 
-	m_elapsedTime = 0.0f;
-	m_isLoading = true;
+	//m_elapsedTime = 0.0f;
+	//m_isLoading = true;
 }
 
 

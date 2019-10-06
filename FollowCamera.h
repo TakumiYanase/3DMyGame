@@ -1,8 +1,8 @@
 ﻿//======================================================
-// File Name	: FollowCamera.h
-// Summary		: 追従カメラ
-// Date			: 2019.07.24
-// Author		: Takumi Yanase
+/// File Name	: FollowCamera.h
+/// Summary		: 追従カメラ
+/// Date		: 2019.07.24
+/// Author		: Takumi Yanase
 //======================================================
 // インクルードガード
 #ifndef INCLUDE_FOLLOW_CAMERA

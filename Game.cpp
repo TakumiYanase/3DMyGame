@@ -1,8 +1,8 @@
 //======================================================
-// File Name	: Game.cpp
-// Summary		: ÉQÅ[ÉÄ
-// Date			: 2019.06.01
-// Author		: Takumi Yanase
+/// File Name	: Game.cpp
+/// Summary		: ÉQÅ[ÉÄ
+/// Date		: 2019.06.01
+/// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
 #include "Game.h"
