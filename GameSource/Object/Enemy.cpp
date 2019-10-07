@@ -4,11 +4,11 @@
 /// Date		: 2019.09.08
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\..\pch.h"
 #include "Enemy.h"
 #include <random>
-#include "Utilities.h"
-#include "GameContext.h"
+#include "..\..\Utility\Utilities.h"
+#include "..\..\Utility\GameContext.h"
 #include "Keyboard.h"
 //======================================================
 Enemy::Enemy(ID3D11DeviceContext* deviceContext, float movableAreaSizey)

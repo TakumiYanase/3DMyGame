@@ -11,14 +11,14 @@
 #include <CommonStates.h>
 #include <SimpleMath.h>
 #include <iostream>
-#include "DeviceResources.h"
-#include "StepTimer.h"
+#include "..\Common\DeviceResources.h"
+#include "..\Common\StepTimer.h"
 #include "Effects.h"
 #include "Mouse.h"
 #include "Keyboard.h"
 #include "Model.h"
-#include "FollowCamera.h"
-#include "GameObjectManager.h"
+#include "..\GameSource\Camera\FollowCamera.h"
+#include "..\GameSource\Object\GameObjectManager.h"
 //======================================================
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.

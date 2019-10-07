@@ -4,7 +4,7 @@
 /// Date		: 2019/4/25
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\..\pch.h"
 #include "DebugCamera.h"
 //======================================================
 // 定数
@@ -96,4 +96,3 @@ void DebugCamera::Motion(int x, int y)
 		m_yAngle += yAngle;
 	}
 }
-

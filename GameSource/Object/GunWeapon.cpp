@@ -4,14 +4,14 @@
 /// Date		: 2019.08.08
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\..\pch.h"
 #include "GunWeapon.h"
 #include <memory>
-#include "DeviceResources.h"
-#include "GameContext.h"
+#include "..\..\Common\DeviceResources.h"
+#include "..\..\Utility\GameContext.h"
 #include "GameObjectManager.h"
 #include "ArtilleryShell.h"
-#include "FollowCamera.h"
+#include "..\Camera\FollowCamera.h"
 //======================================================
 GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPosX,
 	std::unique_ptr<DirectX::Model>&& model, MainUnit* mainUnit, float fireInterval)
@@ -85,6 +85,3 @@ void GunWeapon::FireCommand()
 	//m_elapsedTime = 0.0f;
 	//m_isLoading = true;
 }
-
-
-

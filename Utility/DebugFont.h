@@ -8,7 +8,7 @@
 #ifndef INCLUDE_DEBUG_FONT
 #define INCLUDE_DEBUG_FONT
 //======================================================
-#include "SimpleMath.h"
+#include <SimpleMath.h>
 #include "SpriteBatch.h"
 #include "SpriteFont.h"
 //======================================================

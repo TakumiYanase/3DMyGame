@@ -4,7 +4,7 @@
 /// Date		: 2019.07.24
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\pch.h"
 #include "DebugFont.h"
 //======================================================
 #if DEBUG_FONT_SINGLETON_TYPE == 0

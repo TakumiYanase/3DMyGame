@@ -8,7 +8,7 @@
 #ifndef INCLUDE_FOLLOW_CAMERA
 #define INCLUDE_FOLLOW_CAMERA
 //======================================================
-#include "SimpleMath.h"
+#include <SimpleMath.h>
 #include "Mouse.h"
 //======================================================
 // 追従カメラクラス

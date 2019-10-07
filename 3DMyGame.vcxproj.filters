@@ -14,99 +14,109 @@
     <Filter Include="Object">
       <UniqueIdentifier>{f75d31f7-0d85-4950-a4e4-43183ac677f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameBase">
+      <UniqueIdentifier>{680b1f05-a17a-444e-aecb-f0b814f34651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{53f09548-9be8-4598-abf4-d0cfcf4a5374}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameSource\Camera\DebugCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Camera\FollowCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBase\Game.h">
+      <Filter>GameBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\DebugFont.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\GameContext.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ServiceLocator.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Utilities.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\ArtilleryShell.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\Enemy.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\GameObjectManager.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\GunWeapon.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\MainUnit.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\SpaceDome.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSource\Object\SwordWeapon.h">
+      <Filter>Object</Filter>
+    </ClInclude>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="StepTimer.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceResources.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="GameContext.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="ServiceLocator.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceDome.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SwordWeapon.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GunWeapon.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="MainUnit.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowCamera.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugCamera.h">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="ArtilleryShell.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugFont.h">
+    <ClInclude Include="Common\StepTimer.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="DeviceResources.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="SpaceDome.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="SwordWeapon.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GunWeapon.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="MainUnit.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowCamera.cpp">
+    <ClCompile Include="GameSource\Camera\DebugCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="DebugCamera.cpp">
+    <ClCompile Include="GameSource\Camera\FollowCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="ArtilleryShell.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugFont.cpp">
+    <ClCompile Include="Common\DeviceResources.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="GameBase\Game.cpp">
+      <Filter>GameBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\DebugFont.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\ArtilleryShell.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\Enemy.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\GameObjectManager.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\GunWeapon.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\MainUnit.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\SpaceDome.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\SwordWeapon.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

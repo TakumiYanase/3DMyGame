@@ -75,7 +75,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\DirectXTK\Inc;$(IncludePath);$(ProjectDir)</IncludePath>
     <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -83,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\DirectXTK\Inc;$(IncludePath);$(ProjectDir)</IncludePath>
     <LibraryPath>C:\DirectXTK\Bin\Desktop_2015\Win32\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -91,7 +91,6 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -99,6 +98,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -108,12 +108,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -124,7 +124,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -133,6 +132,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,13 +145,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,46 +162,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ArtilleryShell.h" />
-    <ClInclude Include="DebugCamera.h" />
-    <ClInclude Include="DebugFont.h" />
-    <ClInclude Include="DeviceResources.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="FollowCamera.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameContext.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectManager.h" />
-    <ClInclude Include="GunWeapon.h" />
-    <ClInclude Include="MainUnit.h" />
+    <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Common\StepTimer.h" />
+    <ClInclude Include="GameBase\Game.h" />
+    <ClInclude Include="GameSource\Camera\DebugCamera.h" />
+    <ClInclude Include="GameSource\Camera\FollowCamera.h" />
+    <ClInclude Include="GameSource\Object\ArtilleryShell.h" />
+    <ClInclude Include="GameSource\Object\Enemy.h" />
+    <ClInclude Include="GameSource\Object\GameObject.h" />
+    <ClInclude Include="GameSource\Object\GameObjectManager.h" />
+    <ClInclude Include="GameSource\Object\GunWeapon.h" />
+    <ClInclude Include="GameSource\Object\MainUnit.h" />
+    <ClInclude Include="GameSource\Object\SpaceDome.h" />
+    <ClInclude Include="GameSource\Object\SwordWeapon.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ServiceLocator.h" />
-    <ClInclude Include="SpaceDome.h" />
-    <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="SwordWeapon.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Utility\DebugFont.h" />
+    <ClInclude Include="Utility\GameContext.h" />
+    <ClInclude Include="Utility\ServiceLocator.h" />
+    <ClInclude Include="Utility\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArtilleryShell.cpp" />
-    <ClCompile Include="DebugCamera.cpp" />
-    <ClCompile Include="DebugFont.cpp" />
-    <ClCompile Include="DeviceResources.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="FollowCamera.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
-    <ClCompile Include="GunWeapon.cpp" />
+    <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="GameBase\Game.cpp" />
+    <ClCompile Include="GameSource\Camera\DebugCamera.cpp" />
+    <ClCompile Include="GameSource\Camera\FollowCamera.cpp" />
+    <ClCompile Include="GameSource\Object\ArtilleryShell.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="GameSource\Object\Enemy.cpp" />
+    <ClCompile Include="GameSource\Object\GameObject.cpp" />
+    <ClCompile Include="GameSource\Object\GameObjectManager.cpp" />
+    <ClCompile Include="GameSource\Object\GunWeapon.cpp" />
+    <ClCompile Include="GameSource\Object\MainUnit.cpp" />
+    <ClCompile Include="GameSource\Object\SpaceDome.cpp" />
+    <ClCompile Include="GameSource\Object\SwordWeapon.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainUnit.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="SpaceDome.cpp" />
-    <ClCompile Include="SwordWeapon.cpp" />
+    <ClCompile Include="Utility\DebugFont.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

@@ -4,7 +4,7 @@
 /// Date		: 2019.07.24
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\..\pch.h"
 #include "FollowCamera.h"
 //======================================================
 // 定数
@@ -56,4 +56,3 @@ void FollowCamera::Motion(int x, int y)
 		m_yAngle += yAngle;
 	}
 }
-

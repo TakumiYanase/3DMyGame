@@ -3,7 +3,7 @@
 /// Summary		: メイン
 //======================================================
 #include "pch.h"
-#include "Game.h"
+#include "GameBase\Game.h"
 #include "Mouse.h"
 #include "Keyboard.h"
 // デバッグコンソール

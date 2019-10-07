@@ -4,16 +4,16 @@
 /// Date		: 2019.08.08
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\..\pch.h"
 #include "MainUnit.h"
 #include <memory>
-#include "DeviceResources.h"
-#include "GameContext.h"
+#include "..\..\Common\DeviceResources.h"
+#include "..\..\Utility\GameContext.h"
 #include "GameObjectManager.h"
 #include "GunWeapon.h"
 #include "SwordWeapon.h"
 #include "Keyboard.h"
-#include "FollowCamera.h"
+#include "..\Camera\FollowCamera.h"
 #include "iostream"
 #include "string"
 //======================================================

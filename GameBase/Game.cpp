@@ -4,17 +4,16 @@
 /// Date		: 2019.06.01
 /// Author		: Takumi Yanase
 //======================================================
-#include "pch.h"
+#include "..\pch.h"
 #include "Game.h"
 #include <random>
-#include "GameObjectManager.h"
-#include "SpaceDome.h"
-#include "MainUnit.h"
-#include "GunWeapon.h"
-#include "SwordWeapon.h"
-#include "Enemy.h"
-#include "GameContext.h"
-#include "DebugFont.h"
+#include "..\GameSource\Object\SpaceDome.h"
+#include "..\GameSource\Object\MainUnit.h"
+#include "..\GameSource\Object\GunWeapon.h"
+#include "..\GameSource\Object\SwordWeapon.h"
+#include "..\GameSource\Object\Enemy.h"
+#include "..\Utility\GameContext.h"
+#include "..\Utility\DebugFont.h"
 #include "iostream"
 #include "string"
 //======================================================
