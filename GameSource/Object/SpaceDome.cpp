@@ -4,7 +4,7 @@
 /// Date		: 2019.08.08
 /// Author		: Takumi Yanase
 //======================================================
-#include "..\..\pch.h"
+#include "pch.h"
 #include "SpaceDome.h"
 #include <memory>
 #include "..\..\Common\DeviceResources.h"

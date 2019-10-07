@@ -4,7 +4,7 @@
 /// Date		: 2019.09.08
 /// Author		: Takumi Yanase
 //======================================================
-#include "..\..\pch.h"
+#include "pch.h"
 #include "Enemy.h"
 #include <random>
 #include "..\..\Utility\Utilities.h"

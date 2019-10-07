@@ -4,7 +4,7 @@
 /// Date		: 2019.06.01
 /// Author		: Takumi Yanase
 //======================================================
-#include "..\pch.h"
+#include "pch.h"
 #include "Game.h"
 #include <random>
 #include "..\GameSource\Object\SpaceDome.h"
