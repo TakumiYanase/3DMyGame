@@ -35,7 +35,7 @@ DebugFont::~DebugFont()
 void DebugFont::create(ID3D11Device1* device, ID3D11DeviceContext1* context)
 {
 	m_spriteBatch = std::make_unique<DirectX::SpriteBatch>(context);
-	m_spriteFont = std::make_unique<DirectX::SpriteFont>(device, L"SegoeUI_18.spritefont");
+	m_spriteFont = std::make_unique<DirectX::SpriteFont>(device, L"Resources/SpriteFont/SegoeUI_18.spritefont");
 }
 
 

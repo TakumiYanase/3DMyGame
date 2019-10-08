@@ -9,7 +9,6 @@
 #define INCLUDE_ARTILLERY_SHELL
 //======================================================
 #include <GeometricPrimitive.h>
-#include <SimpleMath.h>
 #include "GameObject.h"
 //======================================================
 // –C’e‚ÌƒNƒ‰ƒX

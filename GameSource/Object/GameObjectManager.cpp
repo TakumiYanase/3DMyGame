@@ -5,8 +5,8 @@
 /// Author		: Takumi Yanase
 //======================================================
 #include "pch.h"
-#include "GameObjectManager.h"
 #include "GameObject.h"
+#include "GameObjectManager.h"
 //======================================================
 GameObjectManager::GameObjectManager()
 	: m_objects()

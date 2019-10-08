@@ -8,10 +8,7 @@
 #ifndef INCLUDE_GUN_WEAPON
 #define INCLUDE_GUN_WEAPON
 //======================================================
-#include <CommonStates.h>
-#include <SimpleMath.h>
-#include "Model.h"
-#include "Keyboard.h"
+#include <Model.h>
 #include "GameObject.h"
 #include "MainUnit.h"
 //======================================================

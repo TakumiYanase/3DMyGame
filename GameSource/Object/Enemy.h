@@ -9,8 +9,7 @@
 #define INCLUDE_ENEMY
 //======================================================
 #include <GeometricPrimitive.h>
-#include <SimpleMath.h>
-#include "keyboard.h"
+#include <keyboard.h>
 #include "GameObject.h"
 //======================================================
 // “GƒNƒ‰ƒX

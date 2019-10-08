@@ -8,9 +8,7 @@
 #ifndef INCLUDE_MAIN_UNIT
 #define INCLUDE_MAIN_UNIT
 //======================================================
-#include <CommonStates.h>
-#include <SimpleMath.h>
-#include "Model.h"
+#include <Model.h>
 #include "GameObject.h"
 //======================================================
 // メインユニットのクラス

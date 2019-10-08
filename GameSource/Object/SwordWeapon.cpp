@@ -6,10 +6,9 @@
 //======================================================
 #include "pch.h"
 #include "SwordWeapon.h"
-#include <memory>
+#include "GameObjectManager.h"
 #include "..\..\Common\DeviceResources.h"
 #include "..\..\Utility\GameContext.h"
-#include "GameObjectManager.h"
 //======================================================
 SwordWeapon::SwordWeapon(const DirectX::SimpleMath::Vector3& position, std::unique_ptr<DirectX::Model>&& model)
 	:GameObject("SwordWeapon")
@@ -28,7 +27,7 @@ SwordWeapon::~SwordWeapon()
 
 void SwordWeapon::Update(float elapsedTime)
 {
-
+	elapsedTime;
 }
 
 

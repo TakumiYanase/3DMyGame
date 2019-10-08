@@ -6,10 +6,8 @@
 //======================================================
 #include "pch.h"
 #include "Enemy.h"
-#include <random>
 #include "..\..\Utility\Utilities.h"
 #include "..\..\Utility\GameContext.h"
-#include "Keyboard.h"
 //======================================================
 Enemy::Enemy(ID3D11DeviceContext* deviceContext, float movableAreaSizey)
 	: GameObject()
@@ -47,6 +45,8 @@ Enemy::~Enemy()
 
 void Enemy::Update(float elapsedTime)
 {
+	elapsedTime;
+
 	//DirectX::Keyboard::KeyboardStateTracker* keyboardStateTracker = GameContext::Get<DirectX::Keyboard::KeyboardStateTracker>();
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
 

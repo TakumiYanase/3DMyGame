@@ -8,9 +8,7 @@
 #ifndef INCLUDE_SPACE_DOME
 #define INCLUDE_SPACE_DOME
 //======================================================
-#include <CommonStates.h>
-#include <SimpleMath.h>
-#include "Model.h"
+#include <Model.h>
 #include "GameObject.h"
 //======================================================
 // “V‹…ƒNƒ‰ƒX

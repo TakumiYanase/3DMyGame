@@ -1,10 +1,11 @@
-//
-// pch.h
-// Header for standard system include files.
-//
-
-#pragma once
-
+//======================================================
+/// File Name	: pch.h
+/// Header for standard system include files.
+//======================================================
+// インクルードガード
+#ifndef INCLUDE_PCH
+#define INCLUDE_PCH
+//======================================================
 #include <WinSDKVer.h>
 #define _WIN32_WINNT 0x0600
 #include <SDKDDKVer.h>
@@ -121,3 +122,5 @@ namespace DX
 		}
 	}
 }
+
+#endif // INCLUDE_PCH

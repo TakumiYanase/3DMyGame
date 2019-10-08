@@ -8,6 +8,7 @@
 #ifndef INCLUDE_GAME_OBJECT
 #define INCLUDE_GAME_OBJECT
 //======================================================
+#include <CommonStates.h>
 #include <SimpleMath.h>
 //======================================================
 // ゲームオブジェクトクラス

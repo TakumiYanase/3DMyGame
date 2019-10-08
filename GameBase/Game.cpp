@@ -6,7 +6,6 @@
 //======================================================
 #include "pch.h"
 #include "Game.h"
-#include <random>
 #include "..\GameSource\Object\SpaceDome.h"
 #include "..\GameSource\Object\MainUnit.h"
 #include "..\GameSource\Object\GunWeapon.h"
@@ -14,8 +13,6 @@
 #include "..\GameSource\Object\Enemy.h"
 #include "..\Utility\GameContext.h"
 #include "..\Utility\DebugFont.h"
-#include "iostream"
-#include "string"
 //======================================================
 extern void ExitGame();
 
@@ -124,10 +121,9 @@ void Game::Update(DX::StepTimer const& timer)
 {
     float elapsedTime = float(timer.GetElapsedSeconds());
 	float time = float(timer.GetTotalSeconds());
+	time;
 
     // TODO: Add your game logic here.
-    elapsedTime;
-
 	m_pGameObjectManager->Update(elapsedTime);
 }
 #pragma endregion
@@ -242,27 +238,27 @@ void Game::CreateDeviceDependentResources()
 	// エフェクトファクトリの作成
 	DirectX::EffectFactory* factory = new DirectX::EffectFactory(m_pDeviceResources->GetD3DDevice());
 	// テクスチャの読み込みパス指定
-	factory->SetDirectory(L"Resources/Models");
+	factory->SetDirectory(L"Resources/cModels");
 
 	// ファイルを指定してモデルデータ読み込み
 	// 天球
 	m_pSpaceDome = DirectX::Model::CreateFromCMO(
 		m_pDeviceResources->GetD3DDevice(),
-		L"Resources/Models/SpaceDome.cmo",
+		L"Resources/cModels/SpaceDome.cmo",
 		*factory
 	);
 
 	// 本体
 	m_pMainUnit = DirectX::Model::CreateFromCMO(
 		m_pDeviceResources->GetD3DDevice(),
-		L"Resources/Models/MainUnit.cmo",
+		L"Resources/cModels/MainUnit.cmo",
 		*factory
 	);
 
 	// 近接装備
 	m_pSwordWeapon = DirectX::Model::CreateFromCMO(
 		m_pDeviceResources->GetD3DDevice(),
-		L"Resources/Models/SwordWeapon.cmo",
+		L"Resources/cModels/SwordWeapon.cmo",
 		*factory
 	);
 
@@ -271,7 +267,7 @@ void Game::CreateDeviceDependentResources()
 	{
 		m_pGunWeapon[i] = DirectX::Model::CreateFromCMO(
 			m_pDeviceResources->GetD3DDevice(),
-			L"Resources/Models/GunWeapon.cmo",
+			L"Resources/cModels/GunWeapon.cmo",
 			*factory
 		);
 	}

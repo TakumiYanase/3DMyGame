@@ -6,16 +6,12 @@
 //======================================================
 #include "pch.h"
 #include "MainUnit.h"
-#include <memory>
-#include "..\..\Common\DeviceResources.h"
-#include "..\..\Utility\GameContext.h"
-#include "GameObjectManager.h"
 #include "GunWeapon.h"
 #include "SwordWeapon.h"
-#include "Keyboard.h"
+#include "GameObjectManager.h"
 #include "..\Camera\FollowCamera.h"
-#include "iostream"
-#include "string"
+#include "..\..\Common\DeviceResources.h"
+#include "..\..\Utility\GameContext.h"
 //======================================================
 // íËêî
 const float MainUnit::MOVE_SPEED = 0.1f;
@@ -30,6 +26,8 @@ MainUnit::MainUnit(const DirectX::SimpleMath::Vector3& position
 	m_pMainUnit = std::move(mainUnitModel);
 	m_pGunRightWeapon = std::move(gunRightModel);
 	m_pGunLeftWeapon = std::move(gunLeftModel);
+	m_pSwordRightWeapon = std::move(swordModel);
+	m_pSwordLeftWeapon = std::move(swordModel);
 	m_position = position;
 
 	m_worldMatrix = DirectX::SimpleMath::Matrix::Identity;
@@ -53,6 +51,8 @@ MainUnit::~MainUnit()
 
 void MainUnit::Update(float elapsedTime)
 {
+	elapsedTime;
+
 	FollowCamera* followCamera = GameContext::Get<FollowCamera>();
 	DirectX::Keyboard::State keyState = DirectX::Keyboard::Get().GetState();
 

@@ -8,8 +8,6 @@
 #include "ArtilleryShell.h"
 #include "..\..\Common\DeviceResources.h"
 #include "..\..\Utility\GameContext.h"
-#include "iostream"
-#include "string"
 //======================================================
 // ’è”
 const float ArtilleryShell::MOVE_SPEED    = 0.5f;
@@ -39,6 +37,8 @@ ArtilleryShell::~ArtilleryShell()
 
 void ArtilleryShell::Update(float elapsedTime)
 {
+	elapsedTime;
+
 	m_position += m_velocity;
 
 	if (DirectX::SimpleMath::Vector3::Distance(m_position, m_origin) > MAXIMUM_RANGE)

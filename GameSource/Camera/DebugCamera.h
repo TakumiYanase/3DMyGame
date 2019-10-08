@@ -9,7 +9,7 @@
 #define INCLUDE_DEBUG_CAMERA
 //======================================================
 #include <SimpleMath.h>
-#include "Mouse.h"
+#include <Mouse.h>
 //======================================================
 // デバッグ用カメラクラス
 class DebugCamera

@@ -132,16 +132,16 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="SpaceDome.FBX">
+    <MeshContentTask Include="Resources\Models\MainUnit.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="SwordWeapon.FBX">
+    <MeshContentTask Include="Resources\Models\SpaceDome.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="MainUnit.FBX">
+    <MeshContentTask Include="Resources\Models\SwordWeapon.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
-    <MeshContentTask Include="GunWeapon.FBX">
+    <MeshContentTask Include="Resources\Models\GunWeapon.FBX">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>

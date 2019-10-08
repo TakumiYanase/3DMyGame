@@ -9,7 +9,7 @@
 #define INCLUDE_FOLLOW_CAMERA
 //======================================================
 #include <SimpleMath.h>
-#include "Mouse.h"
+#include <Mouse.h>
 //======================================================
 // 追従カメラクラス
 class FollowCamera

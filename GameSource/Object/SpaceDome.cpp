@@ -6,10 +6,9 @@
 //======================================================
 #include "pch.h"
 #include "SpaceDome.h"
-#include <memory>
+#include "GameObjectManager.h"
 #include "..\..\Common\DeviceResources.h"
 #include "..\..\Utility\GameContext.h"
-#include "GameObjectManager.h"
 //======================================================
 SpaceDome::SpaceDome(const DirectX::SimpleMath::Vector3& position, 
 	std::unique_ptr<DirectX::Model>&& model)
@@ -29,7 +28,7 @@ SpaceDome::~SpaceDome()
 
 void SpaceDome::Update(float elapsedTime)
 {
-
+	elapsedTime;
 }
 
 

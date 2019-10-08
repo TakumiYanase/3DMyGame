@@ -8,9 +8,7 @@
 #ifndef INCLUDE_SWORD_WEAPON
 #define INCLUDE_SWORD_WEAPON
 //======================================================
-#include <CommonStates.h>
-#include <SimpleMath.h>
-#include "Model.h"
+#include <Model.h>
 #include "GameObject.h"
 //======================================================
 // ‹ßÚ•ŠíƒNƒ‰ƒX

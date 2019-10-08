@@ -6,12 +6,11 @@
 //======================================================
 #include "pch.h"
 #include "GunWeapon.h"
-#include <memory>
+#include "ArtilleryShell.h"
+#include "GameObjectManager.h"
+#include "..\Camera\FollowCamera.h"
 #include "..\..\Common\DeviceResources.h"
 #include "..\..\Utility\GameContext.h"
-#include "GameObjectManager.h"
-#include "ArtilleryShell.h"
-#include "..\Camera\FollowCamera.h"
 //======================================================
 GunWeapon::GunWeapon(const DirectX::SimpleMath::Vector3& position, float initialPosX,
 	std::unique_ptr<DirectX::Model>&& model, MainUnit* mainUnit, float fireInterval)
